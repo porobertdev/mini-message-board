@@ -1,0 +1,12 @@
+<body>
+    <h1><%= title %></h1>
+
+    <ul class="messages">
+        <% messages.forEach(msg => { %>
+            <li>
+                <p><%= msg.text %></p> by
+                <span><%= msg.user %></span>
+            </li>
+        <% }) %>
+    </ul>
+</body>
