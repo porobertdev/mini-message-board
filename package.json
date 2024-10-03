@@ -1,0 +1,21 @@
+{
+  "name": "mini-message-board",
+  "version": "1.0.0",
+  "description": "Assignment from The Odin Project.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "porobertdev",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "eslint": "^9.11.1",
+    "express": "^4.21.0",
+    "express-async-handler": "^1.2.0",
+    "prettier": "^3.3.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
