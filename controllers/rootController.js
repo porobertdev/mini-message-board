@@ -20,4 +20,14 @@ module.exports = {
             messages,
         });
     },
+    post: (req, res) => {
+        // payload data: req.body; needs urlencoded middleware at app-level
+        console.log(req.body);
+        const { user, msg } = req.body;
+
+        messages.push({ user, msg });
+
+        // res.render('index', { title, messages });
+        res.redirect('/');
+    },
 };
