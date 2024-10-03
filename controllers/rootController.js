@@ -2,12 +2,12 @@
 const title = 'Mini Messageboard';
 const messages = [
     {
-        text: 'Hi there!',
+        msg: 'Hi there!',
         user: 'Amando',
         added: new Date(),
     },
     {
-        text: 'Hello World!',
+        msg: 'Hello World!',
         user: 'Charles',
         added: new Date(),
     },
