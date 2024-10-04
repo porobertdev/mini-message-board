@@ -1,0 +1,18 @@
+input,
+button {
+    appearance: none;
+    /* outline: none; */
+    border: none;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+button {
+    background: none;
+}
+
+li {
+    list-style: none;
+}

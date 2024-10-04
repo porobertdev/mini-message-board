@@ -10,6 +10,8 @@
   "author": "porobertdev",
   "license": "ISC",
   "dependencies": {
+    "canvas-confetti": "^1.9.3",
+    "date-fns": "^4.1.0",
     "ejs": "^3.1.10",
     "eslint": "^9.11.1",
     "express": "^4.21.0",

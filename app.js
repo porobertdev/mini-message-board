@@ -14,6 +14,9 @@ app.set('view engine', 'ejs');
 // Middleware to save payload data on req.body
 app.use(express.urlencoded({ extended: true }));
 
+// Load static files (needed for CSS)
+app.use(express.static('./public'));
+
 // Set routers: no need to specify path since it's root /
 app.use(rootRouter);
 

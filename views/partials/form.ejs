@@ -1,14 +1,46 @@
 <body>
-    <h1><%= title %></h1>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    </head>
+    
+    <h2><%= title %></h2>
     <form method="POST" action="/new">
         <!-- user -->
-        <label for="user">Your Name:</label>
-        <input type="text" name="user" id="user" required />
+            <label for="user">Your Name:</label>
+            <input type="text" name="user" id="user" required placeholder="Can be a username; @ is auto-appended" />
 
-        <!-- message -->
-        <label for="msg">Message:</label>
-        <input type="text" name="msg" id="msg" required />
+            <!-- message -->
 
-        <button type="submit">Add Message</button>
+            <label for="msg">Message:</label>
+            <input
+                type="text"
+                name="msg"
+                id="msg"
+                required
+                placeholder="Chat..."
+                maxlength="100"
+            />
+        </div>
+
+        <button type="submit" class="hidden">Add Message</button>
     </form>
 </body>
+
+<script>
+    const nameInput = document.querySelector('input#user');
+    const msgInput = document.querySelector('input#msg');
+    const submitBtn = document.querySelector('form > button[type="submit"]');
+
+    nameInput.addEventListener('keydown', inputHandler);
+    msgInput.addEventListener('keydown', inputHandler);
+
+    submitBtn.addEventListener('click', () => confetti({ particleCount: 300, spread: 150 }));
+
+    function inputHandler(event) {
+        if (nameInput.checkValidity() && msgInput.checkValidity()) {
+            submitBtn.classList.remove('hidden');
+        } else {
+            submitBtn.classList.add('hidden');
+        }
+    }
+</script>

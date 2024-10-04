@@ -1,14 +1,22 @@
 <body>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
     <h1><%= title %></h1>
 
     <ul class="messages">
         <% messages.forEach(msg => { %>
             <li>
-                <p><%= msg.msg %></p> by
-                <span><%= msg.user %></span>
+                <div>
+                    <span class="username">@<%= msg.user %></span>
+                    <p class="text"><%= msg.msg %></p>
+                </div>
+                <span class="date"><%= msg.added %></span>
             </li>
-        <% }) %>
+            <% }) %>
+
+        <%- include('../partials/form', { title: "What's up?" }) %>
     </ul>
     
-    <%- include('../partials/form', { title: 'Add a Message' }) %>
 </body>
