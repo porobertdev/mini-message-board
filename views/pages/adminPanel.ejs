@@ -1,0 +1,25 @@
+<body>
+    
+    <title><%= title %></title>
+
+    <div class="admin-panel">
+        
+        <% if (messages.length === 0) { %>
+
+            <p>Currently there are no messages.</p>
+
+        <% } else { %>
+                <% messages.forEach( (msg, index) => { %>
+                    <div class="msg">
+                        <p class="content"> <%= msg.msg %> </p>
+                        <span class="created_by"> <%= msg.user %></span>
+
+                        <form action="/admin/delete/<%= index %>" method="post">
+                            <button type="submit" class="delete">Delete</button>
+                        </form>
+                    </div>
+                <% }) %>
+        <% } %>
+    </div>
+
+</body>

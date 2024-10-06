@@ -34,6 +34,9 @@ const validateUser = [
 ];
 
 module.exports = {
+    messages,
+
+    // route handlers
     get: (req, res) => {
         res.render('index', {
             title,
