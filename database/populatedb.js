@@ -45,4 +45,8 @@ async function populatedb() {
     await pool.end();
 }
 
-populatedb();
+// populatedb();
+
+module.exports = {
+    populatedb,
+};
