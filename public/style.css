@@ -107,10 +107,15 @@ header {
 }
 
 /* ADMIN PANEL */
+a.homepage {
+    display: block;
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+}
+
 .admin-panel {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min-content, 30%));
-
     gap: 2rem;
 
     div.msg {
