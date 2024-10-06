@@ -15,12 +15,12 @@
             <p>Currently there are no messages.</p>
 
         <% } else { %>
-                <% messages.forEach( (msg, index) => { %>
+                <% messages.forEach( (msg) => { %>
                     <div class="msg">
-                        <p class="content"> <%= msg.msg %> </p>
-                        <span class="created_by"> <%= msg.user %></span>
+                        <p class="content"> <%= msg.message %> </p>
+                        <span class="created_by"> <%= msg.username %></span>
 
-                        <form action="/admin/delete/<%= index %>" method="post">
+                        <form action="/admin/delete/<%= msg.id %>" method="post">
                             <button type="submit" class="delete">Delete</button>
                         </form>
                     </div>

@@ -22,10 +22,10 @@
             <% messages.forEach(msg => { %>
                 <li>
                     <div>
-                        <span class="username">@<%= msg.user %></span>
-                        <p class="text"><%= msg.msg %></p>
+                        <span class="username">@<%= msg.username %></span>
+                        <p class="text"><%= msg.message %></p>
                     </div>
-                    <span class="date"><%= msg.added %></span>
+                    <span class="date"><%= msg.added || 'date not known' %></span>
                 </li>
                 <% }) %>
 

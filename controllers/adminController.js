@@ -1,8 +1,10 @@
-const { messages } = require('../controllers/rootController');
+const db = require('../database/queries');
 const validator = require('express-validator');
 
 module.exports = {
-    adminPanelGet: (req, res) => {
+    adminPanelGet: async (req, res) => {
+        const messages = await db.getAllMessages();
+
         // TODO: find a way to pass a key-value pair for the redirect request
         // if (req.login === 'granted') {
         if (res) {
@@ -14,9 +16,9 @@ module.exports = {
             res.status(400).send('Access denied.');
         }
     },
-    deletePost: (req, res) => {
+    deletePost: async (req, res) => {
         const { postID } = req.params;
-        messages.splice(postID, 1);
+        await db.deleteMessage(postID);
 
         res.redirect('/admin/panel');
     },

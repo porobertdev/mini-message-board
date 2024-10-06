@@ -1,5 +1,6 @@
 const { format } = require('date-fns');
 const validator = require('express-validator');
+const db = require('../database/queries');
 
 const getDate = () => {
     return format(new Date(), 'dd-MM-yyyy / HH:mm');
@@ -7,18 +8,6 @@ const getDate = () => {
 
 // Homepage Config
 const title = 'Mini Messageboard';
-const messages = [
-    {
-        msg: 'Hi there!',
-        user: 'Amando',
-        added: getDate(),
-    },
-    {
-        msg: 'Hello World!',
-        user: 'Charles',
-        added: getDate(),
-    },
-];
 
 const validateUser = [
     validator
@@ -34,10 +23,11 @@ const validateUser = [
 ];
 
 module.exports = {
-    messages,
-
     // route handlers
-    get: (req, res) => {
+    get: async (req, res) => {
+        const messages = await db.getAllMessages();
+        console.log('🚀 ~ get: ~ msgs:', messages);
+
         res.render('index', {
             title,
             messages,
@@ -45,7 +35,7 @@ module.exports = {
     },
     post: [
         validateUser,
-        (req, res) => {
+        async (req, res) => {
             // payload data: req.body; needs urlencoded middleware at app-level
             console.log(req.body);
             const { user, msg } = req.body;
@@ -67,7 +57,8 @@ module.exports = {
 
             const date = getDate();
 
-            messages.push({ user, msg, added: date });
+            // messages.push({ user, msg, added: date });
+            await db.insertMessage(user, msg);
 
             // res.render('index', { title, messages });
             // Give some time to the confetti to render
