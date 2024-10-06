@@ -25,18 +25,24 @@ const placeholderMsg = [
 ];
 
 async function populatedb() {
-    console.log('Populating DB...');
+    try {
+        await pool.query('SELECT * FROM messages');
+    } catch (err) {
+        console.log(err);
 
-    await pool.query(CREATE_SQL);
+        // if error, that means the table doesn't exist
+        console.log('Populating DB...');
+        await pool.query(CREATE_SQL);
 
-    for (const m of placeholderMsg) {
-        const sql = INSERT_SQL(m.username, m.message);
-        await pool.query(sql);
+        for (const m of placeholderMsg) {
+            const sql = INSERT_SQL(m.username, m.message);
+            await pool.query(sql);
+        }
+
+        console.log('Done...');
     }
 
     await pool.end();
-
-    console.log('Done...');
 }
 
 populatedb();
