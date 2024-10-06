@@ -108,6 +108,11 @@ header {
 
 /* ADMIN PANEL */
 .admin-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 30%));
+
+    gap: 2rem;
+
     div.msg {
         padding: 2rem;
         border-radius: 6px;
