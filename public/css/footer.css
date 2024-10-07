@@ -1,0 +1,7 @@
+footer {
+    background-color: var(--bkg-footer);
+    /* color: white; */
+    padding: var(--pd-footer);
+    color: white;
+    text-align: center;
+}

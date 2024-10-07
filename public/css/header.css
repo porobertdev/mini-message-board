@@ -1,0 +1,25 @@
+/* HEADER */
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--pd-header);
+
+    nav {
+        a:link,
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+
+        a {
+            font-size: var(--fs-header);
+            width: max-content;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+
+            &:hover {
+                background-color: var(--bkg-cta-clr);
+            }
+        }
+    }
+}

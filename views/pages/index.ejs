@@ -1,36 +1,36 @@
 <body>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-    </head>
-
-    <header>
-        <nav>
-            <a href="/login"><li>Login to Admin Panel</li></a>
-        </nav>
-    </header>
+    <%- include('../partials/head.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
 
     <h1><%= title %></h1>
 
-    <% if (locals.errors) { %>
-        <% errors.forEach(err => { %>
-            <li class="error"><%= err.msg %></li>
-        <% }) %>
-    <% } else { %>
-        <ul class="messages">
-            <% messages.forEach(msg => { %>
-                <li>
-                    <div>
-                        <span class="username">@<%= msg.username %></span>
-                        <p class="text"><%= msg.message %></p>
-                    </div>
-                    <span class="date"><%= msg.added || 'date not known' %></span>
-                </li>
-                <% }) %>
-
-            <%- include('../partials/form', { title: "What's up?" }) %>
-        </ul>
-    <% } %>
+    <main>
+        <% if (locals.errors) { %>
+            <% errors.forEach(err => { %>
+                <li class="error"><%= err.msg %></li>
+            <% }) %>
+        <% } else { %>
+            <ul class="messages">
+                <div class="live-chat">
+                    <div class="circle"></div>
+                    <span>LIVE</span>
+               </div>
+                <% messages.forEach(msg => { %>
+                    <li>
+                        <div>
+                            <span class="username">@<%= msg.username %></span>
+                            <span class="text"><%= msg.message %></span>
+                        </div>
+                        <span class="date"><%= msg.added || 'date not known' %></span>
+                    </li>
+                    <% }) %>
+                <%- include('../partials/form', { title: "What's up?" }) %>
+            </ul>
+        <% } %>
+    </main>
     
+    <!-- FOOTER -->
+    <%- include('../partials/footer.ejs') %>
+
 </body>

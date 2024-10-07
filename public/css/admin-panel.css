@@ -1,0 +1,26 @@
+/* ADMIN PANEL */
+a.homepage {
+    display: block;
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+}
+
+.admin-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 30%));
+    gap: 2rem;
+
+    div.msg {
+        padding: 2rem;
+        border-radius: 6px;
+        background-color: black;
+        color: white;
+    }
+
+    span.created_by {
+        color: aquamarine;
+    }
+
+    button.delete {
+    }
+}

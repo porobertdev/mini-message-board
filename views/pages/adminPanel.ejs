@@ -1,31 +1,29 @@
 <body>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/style.css">
-    </head>
+    <%- include('../partials/head.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
     <h1><%= title %></h1>
 
-    <a href="/" class="homepage">Click to go back</a>
-    
-    <div class="admin-panel">
+    <main>
+        <div class="admin-panel">
         
-        <% if (messages.length === 0) { %>
+            <% if (messages.length === 0) { %>
+                <p>Currently there are no messages.</p>
+            <% } else { %>
+                    <% messages.forEach( (msg) => { %>
+                        <div class="msg">
+                            <p class="content"> <%= msg.message %> </p>
+                            <span class="created_by"> <%= msg.username %></span>
+                            <form action="/admin/delete/<%= msg.id %>" method="post">
+                                <button type="submit" class="delete">Delete</button>
+                            </form>
+                        </div>
+                    <% }) %>
+            <% } %>
+        </div>
+    </main>
 
-            <p>Currently there are no messages.</p>
-
-        <% } else { %>
-                <% messages.forEach( (msg) => { %>
-                    <div class="msg">
-                        <p class="content"> <%= msg.message %> </p>
-                        <span class="created_by"> <%= msg.username %></span>
-
-                        <form action="/admin/delete/<%= msg.id %>" method="post">
-                            <button type="submit" class="delete">Delete</button>
-                        </form>
-                    </div>
-                <% }) %>
-        <% } %>
-    </div>
+    <!-- FOOTER -->
+    <%- include('../partials/footer.ejs') %>
 
 </body>

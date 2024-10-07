@@ -1,0 +1,34 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;800;900&display=swap);
+
+:root {
+    --bkg-clr: #f4f6ff;
+    --bkg-secondary-clr: #f3c623;
+    --bkg-footer: #10375c;
+    --bkg-live-icon: red;
+
+    --bkg-cta-clr: #eb8317;
+    --bkg-cta-hover-clr: rgb(113, 27, 27);
+    --bkg-cta-hover-txt-clr: white;
+
+    /* txt clr */
+    --accent-clr: #10375c;
+
+    /* input validation */
+    --input-valid: rgb(32, 125, 94);
+    --input-invalid: red;
+
+    /* font-sizes */
+    --fs-header: 1rem;
+    --fs-cta: 1rem;
+
+    /* font-family */
+    --ff-main: 'Inter', sans-serif;
+
+    /* paddings */
+    --pd-title: 1.5rem;
+    --pd-input: 1rem;
+    --pd-messages: 1.5rem 2.5rem;
+    --pd-live-chat: 1rem 0;
+    --pd-header: 2rem;
+    --pd-footer: 3rem;
+}

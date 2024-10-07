@@ -1,13 +1,25 @@
 <body>
+    <%- include('../partials/head.ejs') %> <%- include('../partials/header.ejs')
+    %>
+
     <h1><%= title %></h1>
 
-    <form action="/login/admin" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required />
+    <main>
+        <form action="/login/admin" method="POST">
+            <label for="username">Username:</label>
+            <input
+                type="text"
+                name="username"
+                id="username"
+                required
+                autofocus
+            />
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required />
+            <button type="submit">Login</button>
+        </form>
+    </main>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required />
-
-        <button type="submit">Login</button>
-    </form>
+    <!-- FOOTER -->
+    <%- include('../partials/footer.ejs') %>
 </body>
