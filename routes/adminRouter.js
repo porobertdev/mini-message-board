@@ -6,6 +6,4 @@ const adminRouter = Router();
 adminRouter.get('/admin/panel', adminController.adminPanelGet);
 adminRouter.post('/admin/delete/:postID', adminController.deletePost);
 
-module.exports = {
-    adminRouter,
-};
+module.exports = adminRouter;

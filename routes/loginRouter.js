@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const loginController = require('../controllers/loginController');
-const { adminRouter } = require('../routes/adminRouter');
+const adminRouter = require('../routes/adminRouter');
 
 const loginRouter = Router();
 
@@ -10,6 +10,4 @@ loginRouter.use(adminRouter);
 loginRouter.get('/login', loginController.get);
 loginRouter.post('/login/admin', loginController.post);
 
-module.exports = {
-    loginRouter,
-};
+module.exports = loginRouter;

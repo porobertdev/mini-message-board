@@ -1,0 +1,26 @@
+<body>
+    <h1><%= title %></h1>
+
+    <form action="/search/messages" method="GET">
+        <label for="username">Search for posts by:</label>
+        <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="@username"
+        />
+
+        <button type="button">SEARCH</button>
+    </form>
+
+    <div class="search-results">
+        <% if (results.length !== 0) {%>
+            <% results.forEach(r => { %>
+                <li> <%= r.message %> </li>
+            <% }) %>
+       <% } else { %>
+            <span>No results found for that username.</span>
+       <% } %>
+    </div>
+    
+</body>
