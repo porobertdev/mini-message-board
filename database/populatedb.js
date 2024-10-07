@@ -41,8 +41,6 @@ async function populatedb() {
 
         console.log('Done...');
     }
-
-    await pool.end();
 }
 
 // populatedb();
