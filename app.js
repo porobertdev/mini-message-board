@@ -2,7 +2,12 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const WebSocket = require('ws');
 const rootRouter = require('./routes/rootRouter');
-const dotenv = require('dotenv').config();
+if (process.env.NODE_ENV === 'dev') {
+    require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
+    console.log(process.env.DATABASE_NAME);
+}
+require('dotenv').config({ path: `.env.dev` });
+
 const path = require('node:path');
 const db = require('./database/queries');
 
