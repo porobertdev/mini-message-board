@@ -10,6 +10,11 @@
             <% if (messages.length === 0) { %>
                 <p>Currently there are no messages.</p>
             <% } else { %>
+                    <!-- DELETE ALL -->
+                    <form action="/admin/delete/all" method="get">
+                        <button type="submit" class="delete">Delete All</button>
+                    </form>
+
                     <% messages.forEach( (msg) => { %>
                         <div class="msg">
                             <p class="content"> <%= msg.message %> </p>

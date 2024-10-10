@@ -22,4 +22,8 @@ module.exports = {
 
         res.redirect('/admin/panel');
     },
+    deleteAllPosts: async (req, res) => {
+        await db.deleteAllMessages();
+        res.redirect('/admin/panel');
+    },
 };
