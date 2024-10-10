@@ -10,7 +10,11 @@ ws.onmessage = (e) => {
     const data = JSON.parse(e.data);
     console.log('[CLIENT] received data', data);
 
-    renderMsg(data);
+    if (data.clients) {
+        renderNumOfClients(data.clients);
+    } else {
+        renderMsg(data);
+    }
 };
 
 ws.onclose = (e) => {
@@ -40,6 +44,12 @@ const renderMsg = (data) => {
     li.appendChild(message);
     div.appendChild(li);
     container.appendChild(div);
+};
+
+const renderNumOfClients = (num) => {
+    const usersConnected = document.querySelector('span.users-connected');
+
+    usersConnected.textContent = num;
 };
 
 export { ws, renderMsg };
