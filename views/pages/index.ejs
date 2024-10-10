@@ -16,15 +16,17 @@
                     <div class="circle"></div>
                     <span>LIVE</span>
                </div>
-                <% messages.forEach(msg => { %>
-                    <li>
-                        <div>
-                            <span class="username">@<%= msg.username %></span>
-                            <span class="text"><%= msg.message %></span>
-                        </div>
-                        <span class="date"><%= msg.added || 'date not known' %></span>
-                    </li>
-                    <% }) %>
+                <div class="msg-list">
+                    <% messages.forEach(msg => { %>
+                        <li>
+                            <div>
+                                <span class="username">@<%= msg.username %></span>
+                                <span class="text"><%= msg.message %></span>
+                            </div>
+                            <span class="date"><%= msg.added || 'date not known' %></span>
+                        </li>
+                        <% }) %>
+                </div>
                 <%- include('../partials/form', { title: "What's up?" }) %>
             </ul>
         <% } %>

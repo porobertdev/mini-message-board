@@ -5,7 +5,7 @@
 
     <div class="chat-box">
         <h2><%= title %></h2>
-        <form method="POST" action="/new">
+        <form>
             <!-- user -->
             <label for="user">Your Name:</label>
             <input
@@ -26,22 +26,34 @@
                 placeholder="Chat..."
                 maxlength="100"
             />
-            <button type="submit" class="hidden">Send Message</button>
+            <button type="button" class="hidden">Send Message</button>
         </form>
     </div>
 </body>
 
-<script>
+<script type="module">
+    import { ws, renderMsg } from '/js/ws.js';
+
+    console.log('🚀 ~ renderMsg:', renderMsg);
+
     const nameInput = document.querySelector('input#user');
     const msgInput = document.querySelector('input#msg');
-    const submitBtn = document.querySelector('form > button[type="submit"]');
+    const submitBtn = document.querySelector('form > button[type="button"]');
 
     nameInput.addEventListener('keydown', inputHandler);
     msgInput.addEventListener('keydown', inputHandler);
 
-    submitBtn.addEventListener('click', () =>
-        confetti({ particleCount: 300, spread: 150 })
-    );
+    submitBtn.addEventListener('click', () => {
+        confetti({ particleCount: 300, spread: 150 });
+
+        // send to WebSocket Server
+        ws.send(
+            JSON.stringify({
+                user: nameInput.value,
+                msg: msgInput.value,
+            })
+        );
+    });
 
     function inputHandler(event) {
         if (nameInput.checkValidity() && msgInput.checkValidity()) {

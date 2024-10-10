@@ -62,7 +62,8 @@ module.exports = {
 
             // res.render('index', { title, messages });
             // Give some time to the confetti to render
-            setTimeout(() => res.redirect('/'), 1000);
+            // setTimeout(() => res.redirect('/'), 1000);
+            res.end();
         },
     ],
 };

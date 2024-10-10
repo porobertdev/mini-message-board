@@ -30,10 +30,13 @@ ul.messages {
     padding: var(--pd-messages);
     border-radius: 12px;
 
-    /* flex */
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
+    .msg-list {
+        /* flex */
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        margin-bottom: 2rem;
+    }
 
     li {
         display: flex;
@@ -46,6 +49,7 @@ ul.messages {
     }
     .text {
         width: 60%;
+        text-align: left;
     }
 }
 
