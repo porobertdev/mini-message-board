@@ -14,7 +14,7 @@ async function getAllMessages() {
 }
 
 async function searchMessage(username) {
-    await pool.query(`
+    return await pool.query(`
         SELECT *
         FROM messages
         WHERE username = '${username}'
