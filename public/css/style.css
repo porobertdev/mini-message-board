@@ -36,6 +36,9 @@ ul.messages {
         flex-direction: column;
         gap: 1.6rem;
         margin-bottom: 2rem;
+        height: 35%;
+        overflow-y: scroll;
+        scrollbar-color: green;
     }
 
     li {
