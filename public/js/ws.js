@@ -51,6 +51,8 @@ const renderMsg = (data) => {
     li.appendChild(time);
     div.appendChild(li);
     container.appendChild(div);
+
+    message.scrollIntoView();
 };
 
 const renderNumOfClients = (num) => {
