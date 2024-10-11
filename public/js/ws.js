@@ -1,5 +1,9 @@
 // WebSocket API
-const ws = new WebSocket('ws://localhost:3000/');
+const ws = new WebSocket(
+    window.location.host === 'localhost:3000'
+        ? 'ws:localhost:3000'
+        : 'wss://secret-ruthanne-porobertdev-614629eb.koyeb.app'
+);
 console.log('🚀 ~ ws:', ws);
 
 ws.onopen = (e) => {
