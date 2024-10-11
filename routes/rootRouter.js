@@ -10,8 +10,6 @@ const rootRouter = Router();
 
 rootRouter.use(loginRouter);
 rootRouter.use(searchRouter);
-
 rootRouter.get('/', rootController.get);
-rootRouter.post('/new', rootController.post);
 
 module.exports = rootRouter;

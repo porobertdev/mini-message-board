@@ -4,15 +4,14 @@ const ws = new WebSocket(
         ? 'ws:localhost:3000'
         : 'wss://secret-ruthanne-porobertdev-614629eb.koyeb.app'
 );
-console.log('🚀 ~ ws:', ws);
 
 ws.onopen = (e) => {
-    console.log('[CLIENT] connected to WebSocket Server');
+    console.log('[WS-CLIENT] connected to WebSocket Server');
 };
 
 ws.onmessage = (e) => {
     const data = JSON.parse(e.data);
-    console.log('[CLIENT] received data', data);
+    console.log('[WS-CLIENT] received data', data);
 
     if (data.clients) {
         renderNumOfClients(data.clients);
@@ -22,30 +21,34 @@ ws.onmessage = (e) => {
 };
 
 ws.onclose = (e) => {
-    console.log('[CLIENT] closed WebSocket connection');
+    console.log('[WS-CLIENT] closed WebSocket connection');
 };
 
 const renderMsg = (data) => {
-    console.log('🚀 ~ renderMsg ~ data:', data);
-
-    const { user, msg } = data;
-
+    const { user, msg, date } = data;
     const container = document.querySelector('ul.messages .msg-list');
 
     // Create
     const div = document.createElement('div');
     const li = document.createElement('li');
     const username = document.createElement('span');
-    username.classList.add('username');
     const message = document.createElement('span');
-    message.classList.add('text');
+    const time = document.createElement('span');
 
+    // add classes
+    username.classList.add('username');
+    message.classList.add('text');
+    time.classList.add('date');
+
+    // set values
     username.textContent = user;
     message.textContent = msg;
+    time.textContent = date;
 
     // Append
     li.appendChild(username);
     li.appendChild(message);
+    li.appendChild(time);
     div.appendChild(li);
     container.appendChild(div);
 };

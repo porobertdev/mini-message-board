@@ -1,5 +1,4 @@
 const db = require('../database/queries');
-const validator = require('express-validator');
 
 module.exports = {
     adminPanelGet: async (req, res) => {

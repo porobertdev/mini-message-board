@@ -1,19 +1,12 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const { loadEnvConfig, getDate } = require('./utils');
 const WebSocket = require('ws');
 const rootRouter = require('./routes/rootRouter');
-const { format } = require('date-fns');
 const path = require('node:path');
 const db = require('./database/queries');
 // env config
-if (process.env.NODE_ENV === 'dev') {
-    require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
-    console.log(process.env.DATABASE_NAME);
-}
-
-const getDate = () => {
-    return format(new Date(), 'dd-MM-yyyy / HH:mm');
-};
+loadEnvConfig();
 
 const PORT = 3000;
 const app = express();
@@ -31,36 +24,34 @@ app.use(express.static('./public'));
 // Set routers: no need to specify path since it's root /
 app.use(rootRouter);
 
-const server = app.listen(PORT, () => console.log('Server is running...'));
+const server = app.listen(PORT, () => console.log('[SERVER] is running...'));
 
 // WebSocket Server
 const wss = new WebSocket.Server({ server: server });
 
 wss.on('connection', (ws, req, client) => {
-    console.log('[SERVER] - A client connected to the server socket.');
+    console.log('[WSS] - A client connected to WSS.');
     updateNumOfClients();
 
     ws.on('message', async (data) => {
-        console.log('[SERVER] - Client sent data:', data);
+        console.log('[WSS] - Client sent data:', data);
         const { user, msg } = JSON.parse(data);
-        console.log({ user, msg });
         const date = getDate();
 
-        console.log('[SERVER} - Saving to Database.');
-
         // save to database
+        console.log('[WSS} - Saving to Database.');
         await db.insertMessage(user, msg, date);
 
-        // send to each client connected
+        // send to each client connected to WebSocket Server
         wss.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({ user, msg }));
+                client.send(JSON.stringify({ user, msg, date }));
             }
         });
     });
 
     ws.on('close', () => {
-        console.log('[SERVER] - Client has disconnected.');
+        console.log('[WSS] - Client has disconnected.');
         updateNumOfClients();
     });
 });

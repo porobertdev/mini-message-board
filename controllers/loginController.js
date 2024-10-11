@@ -1,5 +1,8 @@
-const dotenv = require('dotenv').config();
+const { loadEnvConfig } = require('../utils');
 const validator = require('express-validator');
+
+// env config
+loadEnvConfig();
 
 const validateLogin = [
     validator
@@ -26,7 +29,6 @@ module.exports = {
         validateLogin,
         (req, res) => {
             const errors = validator.validationResult(req);
-            console.log('🚀 ~ errors:', errors);
 
             if (!errors.isEmpty()) {
                 res.status(400).render('index', {
@@ -43,7 +45,7 @@ module.exports = {
 
             if (
                 username === process.env.ADMIN_USER &&
-                password === process.env.ADMIN_PASS
+                password === process.env.ADMIN_PASSWORD
             ) {
                 console.log('access granted as admin');
 

@@ -1,4 +1,4 @@
-const db = require('../database/pool');
+const { searchMessage } = require('../database/queries');
 
 const title = 'Search for messages';
 
@@ -9,15 +9,7 @@ module.exports = {
 
     getMessages: async (req, res) => {
         const { username } = req.query;
-
-        const SQL = `
-            SELECT *
-            FROM messages
-            WHERE username = '${username}'
-        `;
-
-        const results = await db.query(SQL);
-        console.log(results.rows);
+        const results = await searchMessage(username);
 
         res.render('search', { title, results: results.rows || [] });
     },
