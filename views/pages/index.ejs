@@ -24,7 +24,7 @@
                                 <span class="username">@<%= msg.username %></span>
                                 <span class="text"><%= msg.message %></span>
                             </div>
-                            <span class="date"><%= msg.added || 'date not known' %></span>
+                            <span class="date"><%= msg.date || 'date not known' %></span>
                         </li>
                         <% }) %>
                 </div>

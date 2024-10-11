@@ -2,13 +2,18 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const WebSocket = require('ws');
 const rootRouter = require('./routes/rootRouter');
+const { format } = require('date-fns');
+const path = require('node:path');
+const db = require('./database/queries');
+// env config
 if (process.env.NODE_ENV === 'dev') {
     require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
     console.log(process.env.DATABASE_NAME);
 }
 
-const path = require('node:path');
-const db = require('./database/queries');
+const getDate = () => {
+    return format(new Date(), 'dd-MM-yyyy / HH:mm');
+};
 
 const PORT = 3000;
 const app = express();
@@ -39,11 +44,12 @@ wss.on('connection', (ws, req, client) => {
         console.log('[SERVER] - Client sent data:', data);
         const { user, msg } = JSON.parse(data);
         console.log({ user, msg });
+        const date = getDate();
 
         console.log('[SERVER} - Saving to Database.');
 
         // save to database
-        await db.insertMessage(user, msg);
+        await db.insertMessage(user, msg, date);
 
         // send to each client connected
         wss.clients.forEach((client) => {
