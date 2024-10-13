@@ -51,7 +51,14 @@ wss.on('connection', (ws, req, client) => {
         // send to each client connected to WebSocket Server
         wss.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({ user, msg, date }));
+                client.send(
+                    JSON.stringify({
+                        user,
+                        msg,
+                        date,
+                        notify: client !== ws ? true : false,
+                    })
+                );
             }
         });
     });

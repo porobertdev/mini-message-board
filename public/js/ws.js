@@ -17,6 +17,10 @@ ws.onmessage = (e) => {
         renderNumOfClients(data.clients);
     } else {
         renderMsg(data);
+
+        if (data.notify) {
+            notify('Mini MessageBoard: New message!');
+        }
     }
 };
 
@@ -59,6 +63,26 @@ const renderNumOfClients = (num) => {
     const usersConnected = document.querySelector('span.users-connected');
 
     usersConnected.textContent = num;
+};
+
+// MDN: copy-paste due time constraint :P
+const notify = (msg) => {
+    if (!('Notification' in window)) {
+        // Check if the browser supports notifications
+        alert('This browser does not support desktop notification');
+    } else if (Notification.permission === 'granted') {
+        // Check whether notification permissions have already been granted;
+        // if so, create a notification
+        const notification = new Notification(msg);
+    } else if (Notification.permission !== 'denied') {
+        // We need to ask the user for permission
+        Notification.requestPermission().then((permission) => {
+            // If the user accepts, let's create a notification
+            if (permission === 'granted') {
+                const notification = new Notification(msg);
+            }
+        });
+    }
 };
 
 export { ws, renderMsg };
