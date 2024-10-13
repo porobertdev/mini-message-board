@@ -1,10 +1,11 @@
 const { Router } = require('express');
 const rootController = require('../controllers/rootController');
-const { populatedb } = require('../database/populatedb');
+const { populatedb, initializeAdmin } = require('../database/populatedb');
 const loginRouter = require('../routes/loginRouter');
 const searchRouter = require('./searchRouter');
 
 populatedb();
+initializeAdmin();
 
 const rootRouter = Router();
 

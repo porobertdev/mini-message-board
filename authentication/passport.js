@@ -1,6 +1,7 @@
 const passport = require('passport');
 const localStrategy = require('./strategy');
 const { getUserById } = require('../database/queries');
+const { admin } = require('../database/config');
 
 passport.use(localStrategy);
 passport.serializeUser((user, done) => {
@@ -9,7 +10,7 @@ passport.serializeUser((user, done) => {
 });
 passport.deserializeUser(async (id, done) => {
     try {
-        const rows = await getUserById(id);
+        const { rows } = await getUserById(id, admin.table);
         const user = rows[0];
 
         // user found, no error. Send it to passport.authenticate()

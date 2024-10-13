@@ -1,3 +1,7 @@
+const { loadEnvConfig } = require('../utils');
+
+loadEnvConfig();
+
 const TABLE_NAME = 'messages';
 const placeholderMsg = [
     {
@@ -17,5 +21,10 @@ const placeholderMsg = [
         date: '11-09-2024',
     },
 ];
+const admin = {
+    table: process.env.ADMIN_TABLE,
+    user: process.env.ADMIN_USER,
+    password: process.env.ADMIN_PASSWORD,
+};
 
-module.exports = { TABLE_NAME, placeholderMsg };
+module.exports = { TABLE_NAME, placeholderMsg, admin };

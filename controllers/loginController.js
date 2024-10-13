@@ -1,8 +1,5 @@
-const { loadEnvConfig } = require('../utils');
 const validator = require('express-validator');
-
-// env config
-loadEnvConfig();
+const passport = require('../authentication/passport');
 
 const validateLogin = [
     validator
@@ -27,7 +24,7 @@ module.exports = {
     },
     post: [
         validateLogin,
-        (req, res) => {
+        /*         (req, res, next) => {
             const errors = validator.validationResult(req);
 
             if (!errors.isEmpty()) {
@@ -35,24 +32,14 @@ module.exports = {
                     title: 'Errors occured',
                     errors: errors.array(),
                 });
-
-                return;
             }
 
-            // else continue
-            const { username, password } = req.body;
-            console.log(username, password);
-
-            if (
-                username === process.env.ADMIN_USER &&
-                password === process.env.ADMIN_PASSWORD
-            ) {
-                console.log('access granted as admin');
-
-                setTimeout(() => res.redirect('/admin/panel'), 1000);
-            } else {
-                res.status(400).send('Access denied.');
-            }
-        },
+            // move to passport middleware
+            next();
+        }, */
+        passport.authenticate('local', {
+            successRedirect: '/admin/panel',
+            failureRedirect: '/',
+        }),
     ],
 };

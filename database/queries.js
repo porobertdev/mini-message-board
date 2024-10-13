@@ -7,12 +7,21 @@ async function createTable() {
     );
 }
 
-async function getUserById(id) {
+async function getUserById(id, tableName = TABLE_NAME) {
     return await pool.query(
         `
-        SELECT * FROM ${TABLE_NAME} WHERE id = $1
+        SELECT * FROM ${tableName} WHERE id = $1
         `,
         [id]
+    );
+}
+
+async function getUserByName(name, tableName = TABLE_NAME) {
+    return await pool.query(
+        `
+        SELECT * FROM ${tableName} WHERE username = $1
+        `,
+        [name]
     );
 }
 
@@ -25,7 +34,7 @@ async function getAllMessages() {
 async function searchMessage(username) {
     return await pool.query(`
         SELECT *
-        FROM messages
+        FROM ${TABLE_NAME}
         WHERE username = '${username}'
     `);
 }
@@ -37,20 +46,21 @@ async function insertMessage(username, message, date) {
     );
 }
 
-async function deleteMessage(id) {
-    await pool.query(`DELETE FROM ${TABLE_NAME} WHERE id=${id}`);
+async function deleteMessage(id, tableName = TABLE_NAME) {
+    await pool.query(`DELETE FROM ${tableName} WHERE id=${id}`);
 }
 
-async function deleteAllMessages() {
-    await pool.query(`DELETE FROM ${TABLE_NAME}`);
+async function deleteAllRows(tableName = TABLE_NAME) {
+    await pool.query(`DELETE FROM ${tableName}`);
 }
 
 module.exports = {
     createTable,
     getUserById,
+    getUserByName,
     getAllMessages,
     searchMessage,
     insertMessage,
     deleteMessage,
-    deleteAllMessages,
+    deleteAllRows,
 };

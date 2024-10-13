@@ -8,9 +8,6 @@ const db = require('./database/queries');
 const session = require('./authentication/session');
 const passport = require('./authentication/passport');
 
-// env config
-loadEnvConfig();
-
 const PORT = 3000;
 const app = express();
 
