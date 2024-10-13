@@ -7,6 +7,15 @@ async function createTable() {
     );
 }
 
+async function getUserById(id) {
+    return await pool.query(
+        `
+        SELECT * FROM ${TABLE_NAME} WHERE id = $1
+        `,
+        [id]
+    );
+}
+
 async function getAllMessages() {
     const { rows } = await pool.query(`SELECT * FROM ${TABLE_NAME}`);
 
@@ -38,6 +47,7 @@ async function deleteAllMessages() {
 
 module.exports = {
     createTable,
+    getUserById,
     getAllMessages,
     searchMessage,
     insertMessage,

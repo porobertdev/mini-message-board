@@ -5,6 +5,9 @@ const WebSocket = require('ws');
 const rootRouter = require('./routes/rootRouter');
 const path = require('node:path');
 const db = require('./database/queries');
+const session = require('./authentication/session');
+const passport = require('./authentication/passport');
+
 // env config
 loadEnvConfig();
 
@@ -20,6 +23,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Load static files (needed for CSS)
 app.use(express.static('./public'));
+
+// Create a session
+app.use(session);
+
+// restore session when a logged client requests again
+app.use(passport.session());
 
 // Set routers: no need to specify path since it's root /
 app.use(rootRouter);
