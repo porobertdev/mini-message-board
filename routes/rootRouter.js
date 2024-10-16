@@ -11,7 +11,8 @@ const rootRouter = Router();
 
 /*
 middleware to dynamically change navbar
-based on authentication status
+based on authentication status by adding
+a property that EJS template can use
 */
 rootRouter.use((req, res, next) => {
     res.locals.authenticated = req.isAuthenticated() ? true : false;

@@ -2,33 +2,28 @@ const db = require('../database/queries');
 
 module.exports = {
     adminPanelGet: async (req, res) => {
-        if (req.isAuthenticated()) {
-            const messages = await db.getAllMessages();
+        const messages = await db.getAllMessages();
 
-            res.render('adminPanel', {
-                title: 'Admin Panel',
-                messages,
-            });
-        } else {
-            res.status(400).send('Access denied.');
-        }
+        res.render('adminPanel', {
+            title: 'Admin Panel',
+            messages,
+        });
     },
     deletePost: async (req, res) => {
-        if (req.isAuthenticated()) {
-            const { postID } = req.params;
-            await db.deleteMessage(postID);
+        const { postID } = req.params;
+        await db.deleteMessage(postID);
 
-            res.redirect('/admin/panel');
-        } else {
-            res.status(400).send('Access denied.');
-        }
+        res.redirect('/admin/panel');
     },
     deleteAllPosts: async (req, res) => {
+        await db.deleteAllRows();
+        res.redirect('/admin/panel');
+    },
+    isAuthenticated: (req, res, next) => {
         if (req.isAuthenticated()) {
-            await db.deleteAllRows();
-            res.redirect('/admin/panel');
+            next();
         } else {
-            res.status(400).send('Access denied.');
+            res.status(403).send('Access denied');
         }
     },
 };
