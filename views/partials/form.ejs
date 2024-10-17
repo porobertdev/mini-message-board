@@ -33,6 +33,7 @@
 
 <script type="module">
     import { ws, renderMsg } from '/js/ws.js';
+    import { filterMessage, redirectBadUser } from './js/filterMessage.js';
 
     const form = document.querySelector('.chat-box > form');
     const nameInput = document.querySelector('input#user');
@@ -57,6 +58,11 @@
 
     function sendHandler(e) {
         confetti({ particleCount: 300, spread: 150 });
+
+        if (filterMessage(msgInput.value) > 0) {
+            redirectBadUser();
+            return;
+        }
 
         // send to WebSocket Server
         ws.send(
