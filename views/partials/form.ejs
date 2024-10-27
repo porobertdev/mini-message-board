@@ -40,8 +40,8 @@
     const msgInput = document.querySelector('input#msg');
     const submitBtn = document.querySelector('form > button[type="button"]');
 
-    nameInput.addEventListener('keydown', inputHandler);
-    msgInput.addEventListener('keydown', inputHandler);
+    nameInput.addEventListener('keyup', inputHandler);
+    msgInput.addEventListener('keyup', inputHandler);
     submitBtn.addEventListener('click', sendHandler);
 
     function inputHandler(e) {
