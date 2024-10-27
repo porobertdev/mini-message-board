@@ -10,6 +10,10 @@
     --bkg-cta-hover-clr: rgb(113, 27, 27);
     --bkg-cta-hover-txt-clr: white;
 
+    /* source-code rectangle */
+    --text-dark-yellow-clr: #9d7d0c;
+    --border-clr: #e5b816;
+
     /* txt clr */
     --accent-clr: #10375c;
 
