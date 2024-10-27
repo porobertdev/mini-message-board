@@ -1,5 +1,6 @@
 const validator = require('express-validator');
 const passport = require('../authentication/passport');
+const { generateJWT } = require('../authentication/jwt');
 
 const validateLogin = [
     validator
@@ -37,9 +38,28 @@ module.exports = {
             // move to passport middleware
             next();
         }, */
+        // passport.authenticate('local', {
+        //     successRedirect: '/admin/panel',
+        //     failureRedirect: '/',
+        // }),
         passport.authenticate('local', {
-            successRedirect: '/admin/panel',
-            failureRedirect: '/',
+            failureRedirect: '/login',
         }),
+        (req, res) => {
+            /*
+            This middleware runs if authentication is successful, so `req.user` from passport is available
+
+            passport.authenticate returns a middleware (req, res, next) - Thanks @StackOverflow: https://stackoverflow.com/a/71110945/21600888 
+            */
+            const bearerToken = generateJWT(req.user);
+
+            /*
+            localStorage seems to be recommended (tho still has security flaws),
+            but for simplicity, just set it as a cookie
+            */
+            res.cookie('bearer-token', bearerToken);
+
+            res.redirect('/admin/panel');
+        },
     ],
 };

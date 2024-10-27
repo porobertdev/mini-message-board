@@ -1,3 +1,4 @@
+const { isJWTValid, extractJWT } = require('../authentication/jwt');
 const db = require('../database/queries');
 
 module.exports = {
@@ -24,6 +25,17 @@ module.exports = {
             next();
         } else {
             res.status(403).send('Access denied');
+        }
+    },
+    isTokenValid: (req, res, next) => {
+        console.log('[JWT] - Checking Token...');
+        const token = extractJWT(req.headers.cookie);
+        const result = isJWTValid(token);
+
+        if (result) {
+            next();
+        } else {
+            res.status(403).send('Invalid token!');
         }
     },
 };
