@@ -1,6 +1,10 @@
 const pool = require('./pool');
 const { TABLE_NAME } = require('./config');
 
+async function createDatabase(name) {
+    await pool.query(`CREATE DATABASE ${name};`);
+}
+
 async function createTable() {
     await pool.query(
         `CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, username VARCHAR (255), message TEXT, date TEXT);`
@@ -55,6 +59,7 @@ async function deleteAllRows(tableName = TABLE_NAME) {
 }
 
 module.exports = {
+    createDatabase,
     createTable,
     getUserById,
     getUserByName,

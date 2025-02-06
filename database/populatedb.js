@@ -1,4 +1,5 @@
 const {
+    createDatabase,
     createTable,
     insertMessage,
     getAllMessages,
@@ -7,9 +8,13 @@ const {
 const { placeholderMsg, admin } = require('./config');
 const hash = require('../authentication/hash');
 const pool = require('./pool');
+const { loadEnvConfig } = require('../utils');
+
+loadEnvConfig();
 
 async function populatedb() {
     try {
+        await createDatabase(process.env.DATABASE_USER);
         await getAllMessages();
     } catch (err) {
         console.log(err);
