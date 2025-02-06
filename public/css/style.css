@@ -6,7 +6,7 @@
 @import 'animations.css';
 
 body {
-    background-color: var(--bkg-clr);
+    background-color: var(--bkg-secondary-clr);
     font-family: var(--ff-main);
 }
 
@@ -15,6 +15,7 @@ body {
         margin: 0 auto;
         width: max-content;
         padding: var(--pd-title);
+        color: var(--clr-text-primary);
 
         a.source-code {
             position: relative;
@@ -29,12 +30,12 @@ body {
                 position: absolute;
                 bottom: 20px;
                 left: 10px;
-                color: var(--text-dark-yellow-clr);
+                color: black;
 
                 width: max-content;
                 padding: 0.3rem 0.4rem;
                 border-radius: 6px;
-                background-color: var(--bkg-secondary-clr);
+                background-color: var(--clr-accent-primary);
                 border: 2px solid var(--border-text-clr);
 
                 font-size: 0.65rem;
@@ -43,14 +44,21 @@ body {
             /* Thanks @StackOverflow: https://stackoverflow.com/a/13234028/21600888 */
             &:hover:after {
                 color: black;
+                background-color: var(--clr-text-secondary);
             }
         }
     }
 }
 
 main {
-    width: 50%;
+    width: 60%;
     margin: 0 auto 4rem;
+}
+
+h1 {
+    width: max-content;
+    margin: 0 auto;
+    color: var(--clr-text-primary);
 }
 
 .hidden {
@@ -58,7 +66,7 @@ main {
 }
 
 ul.messages {
-    background-color: var(--bkg-secondary-clr);
+    background-color: var(--bkg-clr);
     padding: var(--pd-messages);
     border-radius: 12px;
 
@@ -66,16 +74,17 @@ ul.messages {
         /* flex */
         display: flex;
         flex-direction: column;
-        gap: 1.6rem;
+        gap: 2rem;
         margin-bottom: 2rem;
         height: 35%;
         overflow-y: scroll;
-        scrollbar-color: green;
     }
 
     li {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        font-family: 'Inter';
     }
 
     .date {
@@ -85,20 +94,20 @@ ul.messages {
     .text {
         width: 60%;
         text-align: left;
+        color: var(--clr-text-secondary);
     }
 }
 
 .username {
-    color: var(--accent-clr);
+    background-color: var(--clr-accent-primary);
     font-weight: bold;
     padding: 0.3rem;
-    background-color: white;
     border-radius: 6px;
 
     margin-right: 0.5rem; /* to push message a bit */
 
     &:hover {
-        background-color: var(--accent-clr);
+        background-color: var(--clr-accent-primary);
         color: var(--bkg-secondary-clr);
     }
 }
@@ -112,11 +121,12 @@ form {
     button {
         cursor: pointer;
         /* padding: 0.5rem 1rem; */
-        background-color: var(--bkg-cta-clr);
+        background-color: var(--clr-accent-primary);
         font-size: var(--fs-cta);
+        font-weight: bold;
 
         &:hover {
-            background-color: var(--bkg-cta-hover-clr);
+            background-color: var(--clr-accent-third);
             color: var(--bkg-cta-hover-txt-clr);
         }
     }
@@ -124,6 +134,15 @@ form {
     input,
     button {
         border-radius: 6px;
+    }
+
+    input {
+        background-color: var(--bkg-secondary-clr);
+        color: white;
+    }
+
+    label {
+        color: var(--clr-text-secondary);
     }
 
     button,
@@ -134,7 +153,7 @@ form {
 
     /* UI Validation */
     input:valid {
-        border: 3px solid var(--input-valid);
+        border: 3px solid var(--clr-accent-primary);
     }
     /* input:invalid {
         border: 1px solid var(--input-invalid);
@@ -145,8 +164,18 @@ form {
     text-align: center;
 
     .search-results {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+
         li {
-            list-style: circle;
+            color: var(--clr-text-secondary);
+            /* list-style: circle; */
+            background-color: white;
+            color: var(--clr-accent-third);
+            border-radius: 6px;
+            padding: 1rem;
         }
     }
 }
@@ -157,6 +186,9 @@ form {
     align-items: center;
     /* gap: 2rem; */
     padding: var(--pd-live-chat);
+    color: var(--clr-text-primary);
+    margin-bottom: 1.5rem;
+    /* font-size: rem; */
 }
 
 /* Thanks @Alexey Kulesh: https://codepen.io/eereeska/pen/gOPdBZg */
@@ -198,6 +230,7 @@ form {
 
 .chat-box {
     margin: 1.2rem 0;
+    color: var(--clr-text-primary);
 }
 
 /* RESPONSIVENESS */
@@ -216,5 +249,15 @@ form {
     .date {
         display: none;
         /* font-size: 0.5rem; */
+    }
+
+    #search {
+        .search-results {
+            display: block;
+
+            li {
+                margin-bottom: 1rem;
+            }
+        }
     }
 }

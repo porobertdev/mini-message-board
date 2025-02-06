@@ -1,8 +1,13 @@
 @import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;800;900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Lato:wght@100;200;300;400;500;600;800;900&display=swap);
+
+body {
+  font-family: 'Lato', sans-serif;
+}
 
 :root {
-    --bkg-clr: #f4f6ff;
-    --bkg-secondary-clr: #f3c623;
+    --bkg-clr: #2d303f;
+    --bkg-secondary-clr: #3a3e4e;
     --bkg-footer: #10375c;
     --bkg-live-icon: red;
 
@@ -10,12 +15,17 @@
     --bkg-cta-hover-clr: rgb(113, 27, 27);
     --bkg-cta-hover-txt-clr: white;
 
+    --clr-text-primary: white;
+    --clr-text-secondary: #c8c8c8;
+
     /* source-code rectangle */
     --text-dark-yellow-clr: #9d7d0c;
     --border-clr: #e5b816;
 
     /* txt clr */
-    --accent-clr: #10375c;
+    --clr-accent-primary: #93a5e8;
+    --clr-accent-secondary: #10375c;
+    --clr-accent-third: #6D7EBE;
 
     /* input validation */
     --input-valid: rgb(32, 125, 94);
@@ -26,7 +36,7 @@
     --fs-cta: 1rem;
 
     /* font-family */
-    --ff-main: 'Inter', sans-serif;
+    --ff-main: 'Lato', sans-serif;
 
     /* paddings */
     --pd-title: 1.5rem;
